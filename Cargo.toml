@@ -6,12 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-embassy-embedded-hal = { version = "0.1.0", features = ["defmt"] }
-embassy-executor = { version = "0.5.0", features = ["task-arena-size-32768", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"] }
-embassy-time = { version = "0.3.0", features = ["defmt", "defmt-timestamp-uptime"] }
-embassy-rp = { version = "0.1.0", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
-embassy-sync = { version = "0.5.0", features = ["defmt"] }
-
 defmt = "0.3"
 defmt-rtt = "0.4"
 fixed = "1.23.1"
@@ -23,6 +17,40 @@ panic-probe = { version = "0.3", features = ["print-defmt"] }
 
 pio = "0.2.1"
 smart-leds = "0.3.0"
+
+[dependencies.ws2812]
+git = "https://github.com/FransUrbo/rust-libs-ws2812.git"
+rev = "712ed6e"
+
+# They haven't released the `embassy_time::with_deadline` yet, so need to use the GIT version.
+[dependencies.embassy-embedded-hal]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+features = ["defmt"]
+
+[dependencies.embassy-executor]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+features = ["task-arena-size-32768", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"]
+
+[dependencies.embassy-time-driver]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+
+[dependencies.embassy-time]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+features = ["defmt", "defmt-timestamp-uptime"]
+
+[dependencies.embassy-rp]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"]
+
+[dependencies.embassy-sync]
+git = "https://github.com/embassy-rs/embassy.git"
+rev = "511bee7"
+features = ["defmt"]
 
 [profile.release]
 debug = 2
