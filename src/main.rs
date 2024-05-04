@@ -80,7 +80,7 @@ async fn main(spawner: Spawner) {
     for _ in 1..=5 {
 	// GREEN
 	info!("GREEN/ON");
-	ws2812.write(&[(255,0,0).into()]).await;
+	ws2812.write(&[(0,255,0).into()]).await;
         Timer::after_millis(500).await;
 
 	info!("GREEN/OFF");
@@ -105,7 +105,7 @@ async fn main(spawner: Spawner) {
     // The processor should reset in 1.05 seconds.
     loop {
 	// RED
-	ws2812.write(&[(0,255,0).into()]).await;
+	ws2812.write(&[(255,0,0).into()]).await;
         Timer::after_millis(100).await;
 
 	ws2812.write(&[(0,0,0).into()]).await;
